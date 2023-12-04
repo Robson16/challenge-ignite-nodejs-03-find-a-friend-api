@@ -15,6 +15,11 @@ enum Role {
   ONG
 }
 
+enum PetType {
+  CAT
+  DOG
+}
+
 model User {
   id            String   @id @default(uuid())
   name          String
@@ -45,4 +50,23 @@ model Ong {
   Pet Pet[]
 
   @@map("ongs")
+}
+
+model Pet {
+  id                 String   @id @default(uuid())
+  name               String
+  about              String
+  age                String
+  type               PetType
+  size               String
+  energy_level       String
+  independence_level String
+  environment        String
+  requirements       String[]
+  created_at         DateTime @default(now())
+
+  org    Ong    @relation(fields: [ong_id], references: [id])
+  ong_id String
+
+  @@map("pets")
 }
