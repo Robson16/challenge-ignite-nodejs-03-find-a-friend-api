@@ -23,5 +23,26 @@ model User {
   role          Role     @default(ONG)
   created_at    DateTime @default(now())
 
+  Ong Ong[]
+
   @@map("users")
+}
+
+model Ong {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  phone       String
+  address     String
+  zip_code    Decimal
+  latitude    Decimal
+  longitude   Decimal
+  created_at  DateTime @default(now())
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+
+  Pet Pet[]
+
+  @@map("ongs")
 }
