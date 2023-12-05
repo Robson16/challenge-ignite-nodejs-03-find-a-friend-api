@@ -1,20 +1,31 @@
 import { FakeOngsRepository } from '@/repositories/fake/fake-ongs-repository'
+import { FakeUsersRepository } from '@/repositories/fake/fake-users-repository'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { CreateOngService } from './create-ong'
 import { OngAlreadyExistsError } from './errors/ong-already-exists-error'
+import { hash } from 'bcryptjs'
+import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
+let usersRepository: FakeUsersRepository
 let ongsRepository: FakeOngsRepository
 let sut: CreateOngService // Subject Under Test
 
 describe('Create ONG Service', () => {
   beforeEach(() => {
+    usersRepository = new FakeUsersRepository()
     ongsRepository = new FakeOngsRepository()
-    sut = new CreateOngService(ongsRepository)
+    sut = new CreateOngService(usersRepository, ongsRepository)
   })
 
   it('should be able to create a ONG', async () => {
+    const user = await usersRepository.create({
+      name: 'John Doe',
+      email: 'johndoe@exemple.com',
+      password_hash: await hash('123456', 6),
+    })
+
     const { ong } = await sut.execute({
-      userId: 'userId-01',
+      userId: user.id,
       title: 'Test ONG',
       description: null,
       phone: '+5511988887777',
@@ -27,9 +38,30 @@ describe('Create ONG Service', () => {
     expect(ong.id).toEqual(expect.any(String))
   })
 
+  it('should be not able to create a ONG without a user associated', async () => {
+    await expect(() =>
+      sut.execute({
+        userId: 'non-existing-user-id',
+        title: 'Test ONG',
+        description: null,
+        phone: '+5511988887777',
+        address: 'Test Streat, 777',
+        zipCode: '7777777',
+        latitude: -23.4882062,
+        longitude: -46.6192469,
+      }),
+    ).rejects.toBeInstanceOf(ResourceNotFoundError)
+  })
+
   it('should not be able to create duplicate ONG', async () => {
+    const user = await usersRepository.create({
+      name: 'John Doe',
+      email: 'johndoe@exemple.com',
+      password_hash: await hash('123456', 6),
+    })
+
     await sut.execute({
-      userId: 'userId-01',
+      userId: user.id,
       title: 'Test ONG',
       description: null,
       phone: '+5511988887777',
@@ -41,7 +73,7 @@ describe('Create ONG Service', () => {
 
     await expect(() =>
       sut.execute({
-        userId: 'userId-01',
+        userId: user.id,
         title: 'Test ONG',
         description: null,
         phone: '+5511988887777',

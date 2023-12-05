@@ -1,6 +1,8 @@
 import { OngsRepository } from '@/repositories/ongs-repository'
+import { UsersRepository } from '@/repositories/users-repository'
 import { Ong } from '@prisma/client'
 import { OngAlreadyExistsError } from './errors/ong-already-exists-error'
+import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface CreateOngServiceRequest {
   userId: string
@@ -18,7 +20,10 @@ interface CreateOngServiceResponse {
 }
 
 export class CreateOngService {
-  constructor(private ongsRepository: OngsRepository) {}
+  constructor(
+    private usersRepository: UsersRepository,
+    private ongsRepository: OngsRepository,
+  ) {}
 
   async execute({
     userId,
@@ -30,6 +35,12 @@ export class CreateOngService {
     latitude,
     longitude,
   }: CreateOngServiceRequest): Promise<CreateOngServiceResponse> {
+    const user = await this.usersRepository.findById(userId)
+
+    if (!user) {
+      throw new ResourceNotFoundError()
+    }
+
     const ongTitleAlreadyInUse = await this.ongsRepository.findByTitle(title)
 
     if (ongTitleAlreadyInUse) {
