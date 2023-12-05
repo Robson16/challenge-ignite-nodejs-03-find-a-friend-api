@@ -31,6 +31,7 @@ export class FakeUsersRepository implements UsersRepository {
       name: data.name,
       email: data.email,
       password_hash: data.password_hash,
+      role: data.role ?? 'ONG',
       created_at: new Date(),
     }
 
