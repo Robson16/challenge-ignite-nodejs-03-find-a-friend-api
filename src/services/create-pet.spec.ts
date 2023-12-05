@@ -2,7 +2,6 @@ import { FakeOngsRepository } from '@/repositories/fake/fake-ongs-repository'
 import { FakePetsRepository } from '@/repositories/fake/fake-pets-repository'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { CreatePetService } from './create-pet'
-import { OngAlreadyExistsError } from './errors/ong-already-exists-error'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 let ongsRepository: FakeOngsRepository
