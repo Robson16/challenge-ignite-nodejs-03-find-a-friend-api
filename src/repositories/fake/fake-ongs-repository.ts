@@ -5,6 +5,16 @@ import { OngsRepository } from '../ongs-repository'
 export class FakeOngsRepository implements OngsRepository {
   public items: Ong[] = []
 
+  async findById(id: string) {
+    const ong = this.items.find((item) => item.id === id)
+
+    if (!ong) {
+      return null
+    }
+
+    return ong
+  }
+
   async findByTitle(title: string) {
     const ong = this.items.find((item) => item.title === title)
 

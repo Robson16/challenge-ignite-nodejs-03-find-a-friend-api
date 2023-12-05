@@ -62,7 +62,7 @@ model Pet {
   energy_level       String
   independence_level String
   environment        String
-  requirements       String[]
+  requirements       String
   created_at         DateTime @default(now())
 
   org    Ong    @relation(fields: [ong_id], references: [id])
