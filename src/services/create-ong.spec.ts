@@ -27,7 +27,6 @@ describe('Create ONG Service', () => {
     const { ong } = await sut.execute({
       userId: user.id,
       title: 'Test ONG',
-      description: null,
       phone: '+5511988887777',
       address: 'Test Street, 777',
       state: 'SP',
@@ -45,7 +44,6 @@ describe('Create ONG Service', () => {
       sut.execute({
         userId: 'non-existing-user-id',
         title: 'Test ONG',
-        description: null,
         phone: '+5511988887777',
         address: 'Test Street, 777',
         state: 'SP',
@@ -67,7 +65,6 @@ describe('Create ONG Service', () => {
     await sut.execute({
       userId: user.id,
       title: 'Test ONG',
-      description: null,
       phone: '+5511988887777',
       address: 'Test Street, 777',
       state: 'SP',
@@ -81,7 +78,6 @@ describe('Create ONG Service', () => {
       sut.execute({
         userId: user.id,
         title: 'Test ONG',
-        description: null,
         phone: '+5511988887777',
         address: 'Test Street, 777',
         state: 'SP',
