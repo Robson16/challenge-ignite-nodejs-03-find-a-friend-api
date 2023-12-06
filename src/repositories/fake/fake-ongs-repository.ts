@@ -1,6 +1,6 @@
 import { Ong, Prisma } from '@prisma/client'
 import { randomUUID } from 'node:crypto'
-import { OngsRepository } from '../ongs-repository'
+import { OngsRepository, SearchManyParams } from '../ongs-repository'
 
 export class FakeOngsRepository implements OngsRepository {
   public items: Ong[] = []
@@ -23,6 +23,18 @@ export class FakeOngsRepository implements OngsRepository {
     }
 
     return ong
+  }
+
+  async searchMany({ city, state, page }: SearchManyParams) {
+    const ongs = this.items.filter(
+      (item) => item.city === city && item.state === state,
+    )
+
+    if (page === -1) {
+      return ongs
+    }
+
+    return ongs.slice((page - 1) * 20, page * 20)
   }
 
   async create(data: Prisma.OngUncheckedCreateInput) {
