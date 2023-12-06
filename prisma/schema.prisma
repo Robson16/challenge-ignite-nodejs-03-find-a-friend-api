@@ -39,6 +39,9 @@ model Ong {
   description String?
   phone       String
   address     String
+  country     String   @default("Brazil")
+  state       String
+  city        String
   zip_code    Decimal
   latitude    Decimal
   longitude   Decimal

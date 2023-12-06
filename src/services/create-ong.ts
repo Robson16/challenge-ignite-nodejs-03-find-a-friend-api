@@ -10,6 +10,9 @@ interface CreateOngServiceRequest {
   description: string | null
   phone: string
   address: string
+  country?: string
+  state: string
+  city: string
   zipCode: string
   latitude: number
   longitude: number
@@ -31,6 +34,9 @@ export class CreateOngService {
     description,
     phone,
     address,
+    country,
+    state,
+    city,
     zipCode,
     latitude,
     longitude,
@@ -53,6 +59,9 @@ export class CreateOngService {
       description,
       phone,
       address,
+      country,
+      state,
+      city,
       zip_code: zipCode,
       latitude,
       longitude,
