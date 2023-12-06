@@ -21,7 +21,7 @@ describe('Create Pet Service', () => {
       title: 'Test ONG',
       description: null,
       phone: '+5511988887777',
-      address: 'Test Streat, 777',
+      address: 'Test Street, 777',
       zip_code: '7777777',
       latitude: -23.4882062,
       longitude: -46.6192469,
