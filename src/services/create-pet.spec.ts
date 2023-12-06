@@ -19,9 +19,10 @@ describe('Create Pet Service', () => {
     const ong = await ongsRepository.create({
       user_id: 'userId-01',
       title: 'Test ONG',
-      description: null,
       phone: '+5511988887777',
       address: 'Test Street, 777',
+      state: 'SP',
+      city: 'Jundiaí',
       zip_code: '7777777',
       latitude: -23.4882062,
       longitude: -46.6192469,
