@@ -23,7 +23,7 @@ export class SearchPetService {
     state,
     page,
   }: SearchPetServiceRequest): Promise<SearchPetServiceResponse> {
-    const ongs = await this.ongsRepository.searchMany({ city, state, page: -1 })
+    const ongs = await this.ongsRepository.filter({ city, state, page: -1 })
 
     const ongsId = ongs.map((ong) => ong.id)
 
