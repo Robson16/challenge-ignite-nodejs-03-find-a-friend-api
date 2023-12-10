@@ -1,7 +1,12 @@
 import { Pet, Prisma } from '@prisma/client'
 
 export interface SearchManyParams {
-  ongsId: string[]
+  ongsId?: string[]
+  age?: string
+  type?: string
+  size?: string
+  energyLevel?: string
+  independenceLevel?: string
   page: number
 }
 
