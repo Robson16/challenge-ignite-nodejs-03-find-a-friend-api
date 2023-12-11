@@ -2,7 +2,7 @@ import { FakeOngsRepository } from '@/repositories/fake/fake-ongs-repository'
 import { FakePetsRepository } from '@/repositories/fake/fake-pets-repository'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InvalidRequestError } from './errors/invalid-request-error'
-import { SearchPetService } from './search-pet'
+import { SearchPetService } from './search-pets'
 
 let ongsRepository: FakeOngsRepository
 let petsRepository: FakePetsRepository
