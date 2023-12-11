@@ -76,7 +76,7 @@ describe('Search ONG Service', () => {
 
     await petsRepository.create({
       ong_id: 'ongId-02',
-      name: 'Popsalot',
+      name: 'Poopsalot',
       about: 'test pet',
       age: '3',
       type: 'DOG',
@@ -149,7 +149,7 @@ describe('Search ONG Service', () => {
     expect(pets).toEqual([
       expect.objectContaining({ name: 'Barksalot' }),
       expect.objectContaining({ name: 'Meowsalot' }),
-      expect.objectContaining({ name: 'Popsalot' }),
+      expect.objectContaining({ name: 'Poopsalot' }),
       expect.objectContaining({ name: 'Purrsalot' }),
     ])
   })
