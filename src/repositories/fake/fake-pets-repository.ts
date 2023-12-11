@@ -1,5 +1,5 @@
 import { Pet, Prisma } from '@prisma/client'
-import { filter, isNil, matches, omitBy, isEmpty, isUndefined } from 'lodash'
+import { filter, isEmpty, isNil, matches, omitBy } from 'lodash'
 import { randomUUID } from 'node:crypto'
 import { PetsRepository, SearchManyParams } from '../pets-repository'
 
@@ -40,6 +40,16 @@ export class FakePetsRepository implements PetsRepository {
     )
 
     return pets.slice((page - 1) * 20, page * 20)
+  }
+
+  async findById(id: string) {
+    const pet = this.items.find((item) => item.id === id)
+
+    if (!pet) {
+      return null
+    }
+
+    return pet
   }
 
   async create(data: Prisma.PetUncheckedCreateInput) {
