@@ -35,10 +35,13 @@ model User {
 
 model Ong {
   id          String   @id @default(uuid())
-  title       String
+  title       String   @unique
   description String?
   phone       String
   address     String
+  country     String   @default("Brazil")
+  state       String
+  city        String
   zip_code    Decimal
   latitude    Decimal
   longitude   Decimal
@@ -62,7 +65,14 @@ model Pet {
   energy_level       String
   independence_level String
   environment        String
-  requirements       String[]
+  requirements       String
+  address            String
+  country            String   @default("Brazil")
+  state              String
+  city               String
+  zip_code           Decimal
+  latitude           Decimal
+  longitude          Decimal
   created_at         DateTime @default(now())
 
   org    Ong    @relation(fields: [ong_id], references: [id])
