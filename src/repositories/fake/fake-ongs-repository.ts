@@ -27,28 +27,12 @@ export class FakeOngsRepository implements OngsRepository {
 
   async filter({ title, city, state, page }: FilterParams) {
     const ongs = this.items.filter((item) => {
-      if (title === undefined && city !== undefined && state !== undefined) {
-        return item.city === city && item.state === state
-      }
+      const titleMatch = !title || item.title.includes(title)
+      const cityMatch = city === undefined || item.city === city
+      const stateMatch = state === undefined || item.state === state
 
-      if (title !== undefined && city === undefined && state === undefined) {
-        return item.title.includes(title)
-      }
-
-      if (title !== undefined && city !== undefined && state !== undefined) {
-        return (
-          item.title.includes(title) &&
-          item.city === city &&
-          item.state === state
-        )
-      }
-
-      return item
+      return titleMatch && cityMatch && stateMatch
     })
-
-    if (page === -1) {
-      return ongs
-    }
 
     return ongs.slice((page - 1) * 20, page * 20)
   }

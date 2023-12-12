@@ -43,6 +43,12 @@ describe('Create Pet Service', () => {
         'Test requirement text 2',
         'Test requirement text 3',
       ],
+      address: 'Test Street, 777',
+      state: 'SP',
+      city: 'Jundiaí',
+      zipCode: '7777777',
+      latitude: -23.4882062,
+      longitude: -46.6192469,
     })
 
     expect(pet.id).toEqual(expect.any(String))
@@ -65,6 +71,12 @@ describe('Create Pet Service', () => {
           'Test requirement text 2',
           'Test requirement text 3',
         ],
+        address: 'Test Street, 777',
+        state: 'SP',
+        city: 'Jundiaí',
+        zipCode: '7777777',
+        latitude: -23.4882062,
+        longitude: -46.6192469,
       }),
     ).rejects.toBeInstanceOf(ResourceNotFoundError)
   })

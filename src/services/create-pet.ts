@@ -14,6 +14,13 @@ interface CreatePetServiceRequest {
   independenceLevel: string
   environment: string
   requirements: string[]
+  address: string
+  country?: string
+  state: string
+  city: string
+  zipCode: string
+  latitude: number
+  longitude: number
 }
 
 interface CreatePetServiceResponse {
@@ -37,6 +44,13 @@ export class CreatePetService {
     independenceLevel,
     environment,
     requirements,
+    address,
+    country,
+    state,
+    city,
+    zipCode,
+    latitude,
+    longitude,
   }: CreatePetServiceRequest): Promise<CreatePetServiceResponse> {
     const ong = await this.ongsRepository.findById(ongId)
 
@@ -55,6 +69,13 @@ export class CreatePetService {
       independence_level: independenceLevel,
       environment,
       requirements: JSON.stringify(requirements),
+      address,
+      country,
+      state,
+      city,
+      zip_code: zipCode,
+      latitude,
+      longitude,
     })
 
     return {

@@ -1,43 +1,26 @@
 import { Pet, Prisma } from '@prisma/client'
-import { filter, isEmpty, isNil, matches, omitBy } from 'lodash'
+import { filter, isNil, matches, omitBy } from 'lodash'
 import { randomUUID } from 'node:crypto'
 import { PetsRepository, SearchManyParams } from '../pets-repository'
 
 export class FakePetsRepository implements PetsRepository {
   public items: Pet[] = []
 
-  async searchMany({
-    ongsId,
-    age,
-    type,
-    size,
-    energyLevel,
-    independenceLevel,
-    page,
-  }: SearchManyParams) {
-    let petsFilteredByOngs: Pet[] = []
-
-    if (!isNil(ongsId)) {
-      petsFilteredByOngs = this.items.filter((item) =>
-        ongsId.some((ongId) => item.ong_id.includes(ongId)),
-      )
-    }
-
-    const params = omitBy(
+  async searchMany({ filters, page }: SearchManyParams) {
+    const notNilFilters = omitBy(
       {
-        type,
-        age,
-        energy_level: energyLevel,
-        size,
-        independence_level: independenceLevel,
+        city: filters.city,
+        state: filters.state,
+        age: filters.age,
+        type: filters.type,
+        size: filters.size,
+        energy_level: filters.energyLevel,
+        independence_level: filters.independenceLevel,
       },
       isNil,
     )
 
-    const pets = filter(
-      isEmpty(petsFilteredByOngs) ? this.items : petsFilteredByOngs,
-      matches(params),
-    )
+    const pets = filter(this.items, matches(notNilFilters))
 
     return pets.slice((page - 1) * 20, page * 20)
   }
@@ -65,6 +48,13 @@ export class FakePetsRepository implements PetsRepository {
       independence_level: data.independence_level,
       environment: data.environment,
       requirements: data.requirements,
+      address: data.address,
+      country: data.country ?? 'Brazil',
+      state: data.state,
+      city: data.city,
+      zip_code: new Prisma.Decimal(data.zip_code.toString()),
+      latitude: new Prisma.Decimal(data.latitude.toString()),
+      longitude: new Prisma.Decimal(data.longitude.toString()),
       created_at: new Date(),
     }
 

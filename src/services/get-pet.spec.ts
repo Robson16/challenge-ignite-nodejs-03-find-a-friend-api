@@ -28,6 +28,12 @@ describe('Get Pet Service', () => {
         'Test requirement text 2',
         'Test requirement text 3',
       ]),
+      address: 'Test Street, 777',
+      state: 'SP',
+      city: 'Jundiaí',
+      zip_code: '7777777',
+      latitude: -23.2012036,
+      longitude: -47.072474,
     })
 
     const { pet } = await sut.execute({

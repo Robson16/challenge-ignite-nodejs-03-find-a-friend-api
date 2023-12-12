@@ -39,6 +39,19 @@ describe('Search ONG Service', () => {
       longitude: -47.072474,
     })
 
+    await ongsRepository.create({
+      id: 'ongId-03',
+      user_id: 'userId-03',
+      title: 'ong-test-03',
+      phone: '+5511988887777',
+      address: 'Test Street, 777',
+      state: 'SP',
+      city: 'Santana',
+      zip_code: '7777777',
+      latitude: -23.2012036,
+      longitude: -47.072474,
+    })
+
     const { ongs } = await sut.execute({
       city: 'Jundiaí',
       state: 'SP',

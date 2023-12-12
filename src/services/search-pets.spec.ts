@@ -1,44 +1,15 @@
-import { FakeOngsRepository } from '@/repositories/fake/fake-ongs-repository'
 import { FakePetsRepository } from '@/repositories/fake/fake-pets-repository'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InvalidRequestError } from './errors/invalid-request-error'
 import { SearchPetService } from './search-pets'
 
-let ongsRepository: FakeOngsRepository
 let petsRepository: FakePetsRepository
 let sut: SearchPetService // Subject Under Test
 
 describe('Search ONG Service', () => {
   beforeEach(async () => {
-    ongsRepository = new FakeOngsRepository()
     petsRepository = new FakePetsRepository()
-    sut = new SearchPetService(ongsRepository, petsRepository)
-
-    await ongsRepository.create({
-      id: 'ongId-01',
-      user_id: 'userId-01',
-      title: 'ong-test-01',
-      phone: '+5511988887777',
-      address: 'Test Street, 777',
-      state: 'SP',
-      city: 'Jundiaí',
-      zip_code: '7777777',
-      latitude: -23.2012036,
-      longitude: -47.072474,
-    })
-
-    await ongsRepository.create({
-      id: 'ongId-02',
-      user_id: 'userId-02',
-      title: 'ong-test-02',
-      phone: '+5511988887777',
-      address: 'Test Street, 777',
-      state: 'SP',
-      city: 'Santana',
-      zip_code: '7777777',
-      latitude: -23.5006281,
-      longitude: -46.6495985,
-    })
+    sut = new SearchPetService(petsRepository)
 
     await petsRepository.create({
       ong_id: 'ongId-01',
@@ -55,6 +26,12 @@ describe('Search ONG Service', () => {
         'Test requirement text 2',
         'Test requirement text 3',
       ]),
+      address: 'Test Street, 777',
+      state: 'SP',
+      city: 'Jundiaí',
+      zip_code: '7777777',
+      latitude: -23.2012036,
+      longitude: -47.072474,
     })
 
     await petsRepository.create({
@@ -72,6 +49,12 @@ describe('Search ONG Service', () => {
         'Test requirement text 2',
         'Test requirement text 3',
       ]),
+      address: 'Test Street, 777',
+      state: 'SP',
+      city: 'Jundiaí',
+      zip_code: '7777777',
+      latitude: -23.2012036,
+      longitude: -47.072474,
     })
 
     await petsRepository.create({
@@ -89,6 +72,12 @@ describe('Search ONG Service', () => {
         'Test requirement text 2',
         'Test requirement text 3',
       ]),
+      address: 'Test Street, 777',
+      state: 'SP',
+      city: 'Santana',
+      zip_code: '7777777',
+      latitude: -23.5006281,
+      longitude: -46.6495985,
     })
 
     await petsRepository.create({
@@ -106,6 +95,12 @@ describe('Search ONG Service', () => {
         'Test requirement text 2',
         'Test requirement text 3',
       ]),
+      address: 'Test Street, 777',
+      state: 'SP',
+      city: 'Santana',
+      zip_code: '7777777',
+      latitude: -23.5006281,
+      longitude: -46.6495985,
     })
   })
 
@@ -173,6 +168,12 @@ describe('Search ONG Service', () => {
           'Test requirement text 2',
           'Test requirement text 3',
         ]),
+        address: 'Test Street, 777',
+        state: 'SP',
+        city: 'Jundiaí',
+        zip_code: '7777777',
+        latitude: -23.2012036,
+        longitude: -47.072474,
       })
     }
 

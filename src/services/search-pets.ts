@@ -1,4 +1,3 @@
-import { OngsRepository } from '@/repositories/ongs-repository'
 import { PetsRepository } from '@/repositories/pets-repository'
 import { Pet } from '@prisma/client'
 import { isEmpty, isNil, omitBy } from 'lodash'
@@ -21,10 +20,7 @@ interface SearchPetServiceResponse {
 }
 
 export class SearchPetService {
-  constructor(
-    private ongsRepository: OngsRepository,
-    private petsRepository: PetsRepository,
-  ) {}
+  constructor(private petsRepository: PetsRepository) {}
 
   async execute({
     city,
@@ -36,7 +32,7 @@ export class SearchPetService {
     independenceLevel,
     page,
   }: SearchPetServiceRequest): Promise<SearchPetServiceResponse> {
-    const params = omitBy(
+    const filters = omitBy(
       {
         city,
         state,
@@ -49,21 +45,12 @@ export class SearchPetService {
       isNil,
     )
 
-    if (isNil(params) || isEmpty(params)) {
+    if (isNil(filters) || isEmpty(filters)) {
       throw new InvalidRequestError()
     }
 
-    const ongs = await this.ongsRepository.filter({ city, state, page: -1 })
-
-    const ongsId = ongs.map((ong) => ong.id)
-
     const pets = await this.petsRepository.searchMany({
-      ongsId,
-      age,
-      type,
-      size,
-      energyLevel,
-      independenceLevel,
+      filters,
       page,
     })
 

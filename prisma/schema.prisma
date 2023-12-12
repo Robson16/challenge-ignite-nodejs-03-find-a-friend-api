@@ -66,6 +66,13 @@ model Pet {
   independence_level String
   environment        String
   requirements       String
+  address            String
+  country            String   @default("Brazil")
+  state              String
+  city               String
+  zip_code           Decimal
+  latitude           Decimal
+  longitude          Decimal
   created_at         DateTime @default(now())
 
   org    Ong    @relation(fields: [ong_id], references: [id])
