@@ -1,9 +1,9 @@
 import { PrismaPetsRepository } from '@/repositories/prisma/prisma-pets-repository'
-import { SearchOngsService } from '../search-ongs'
+import { SearchPetService } from '../search-pets'
 
 export function makeSearchPetsService() {
   const petsRepository = new PrismaPetsRepository()
-  const service = new SearchOngsService(petsRepository)
+  const service = new SearchPetService(petsRepository)
 
   return service
 }
