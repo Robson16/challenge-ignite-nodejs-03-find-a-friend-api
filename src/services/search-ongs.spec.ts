@@ -21,7 +21,7 @@ describe('Search ONG Service', () => {
       address: 'Test Street, 777',
       state: 'SP',
       city: 'Jundiaí',
-      zip_code: '7777777',
+      zip_code: 7777777,
       latitude: -23.2012036,
       longitude: -47.072474,
     })
@@ -34,7 +34,7 @@ describe('Search ONG Service', () => {
       address: 'Test Street, 777',
       state: 'SP',
       city: 'Jundiaí',
-      zip_code: '7777777',
+      zip_code: 7777777,
       latitude: -23.2012036,
       longitude: -47.072474,
     })
@@ -47,7 +47,7 @@ describe('Search ONG Service', () => {
       address: 'Test Street, 777',
       state: 'SP',
       city: 'Santana',
-      zip_code: '7777777',
+      zip_code: 7777777,
       latitude: -23.2012036,
       longitude: -47.072474,
     })
@@ -74,7 +74,7 @@ describe('Search ONG Service', () => {
       address: 'Test Street, 777',
       state: 'SP',
       city: 'Jundiaí',
-      zip_code: '7777777',
+      zip_code: 7777777,
       latitude: -23.2012036,
       longitude: -47.072474,
     })
@@ -87,7 +87,7 @@ describe('Search ONG Service', () => {
       address: 'Test Street, 777',
       state: 'SP',
       city: 'Jundiaí',
-      zip_code: '7777777',
+      zip_code: 7777777,
       latitude: -23.2012036,
       longitude: -47.072474,
     })
@@ -110,7 +110,7 @@ describe('Search ONG Service', () => {
       address: 'Test Street, 777',
       state: 'SP',
       city: 'Jundiaí',
-      zip_code: '7777777',
+      zip_code: 7777777,
       latitude: -23.2012036,
       longitude: -47.072474,
     })
@@ -123,7 +123,7 @@ describe('Search ONG Service', () => {
       address: 'Test Street, 777',
       state: 'SP',
       city: 'Jundiaí',
-      zip_code: '7777777',
+      zip_code: 7777777,
       latitude: -23.2012036,
       longitude: -47.072474,
     })

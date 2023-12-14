@@ -7,13 +7,13 @@ import { ResourceNotFoundError } from './errors/resource-not-found-error'
 interface CreateOngServiceRequest {
   userId: string
   title: string
-  description?: string
+  description?: string | null
   phone: string
   address: string
-  country?: string
+  country: string
   state: string
   city: string
-  zipCode: string
+  zipCode: number
   latitude: number
   longitude: number
 }
