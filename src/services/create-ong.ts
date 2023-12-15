@@ -13,7 +13,7 @@ interface CreateOngServiceRequest {
   country: string
   state: string
   city: string
-  zipCode: number
+  zip_code: number
   latitude: number
   longitude: number
 }
@@ -37,7 +37,7 @@ export class CreateOngService {
     country,
     state,
     city,
-    zipCode,
+    zip_code,
     latitude,
     longitude,
   }: CreateOngServiceRequest): Promise<CreateOngServiceResponse> {
@@ -62,7 +62,7 @@ export class CreateOngService {
       country,
       state,
       city,
-      zip_code: zipCode,
+      zip_code,
       latitude,
       longitude,
     })

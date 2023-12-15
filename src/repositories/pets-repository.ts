@@ -6,8 +6,8 @@ interface SearchManyFilters {
   age?: string
   type?: string
   size?: string
-  energyLevel?: string
-  independenceLevel?: string
+  energy_level?: string
+  independence_level?: string
 }
 
 export interface SearchManyParams {

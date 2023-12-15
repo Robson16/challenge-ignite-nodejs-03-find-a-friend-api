@@ -9,8 +9,8 @@ interface SearchPetServiceRequest {
   age?: string
   type?: string
   size?: string
-  energyLevel?: string
-  independenceLevel?: string
+  energy_level?: string
+  independence_level?: string
 
   page: number
 }
@@ -28,8 +28,8 @@ export class SearchPetService {
     age,
     type,
     size,
-    energyLevel,
-    independenceLevel,
+    energy_level,
+    independence_level,
     page,
   }: SearchPetServiceRequest): Promise<SearchPetServiceResponse> {
     const filters = omitBy(
@@ -39,8 +39,8 @@ export class SearchPetService {
         age,
         type,
         size,
-        energyLevel,
-        independenceLevel,
+        energy_level,
+        independence_level,
       },
       isNil,
     )

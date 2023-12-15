@@ -1,5 +1,4 @@
 import { OngAlreadyExistsError } from '@/services/errors/ong-already-exists-error'
-import { ResourceNotFoundError } from '@/services/errors/resource-not-found-error'
 import { makeCreateOngService } from '@/services/factories/make-create-ong-service'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
@@ -13,7 +12,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     country: z.string().default('Brazil'),
     state: z.string(),
     city: z.string(),
-    zipCode: z.coerce.number(),
+    zip_code: z.coerce.number(),
     latitude: z.coerce.number().refine((value) => {
       return Math.abs(value) <= 90
     }),
@@ -30,7 +29,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     country,
     state,
     city,
-    zipCode,
+    zip_code,
     latitude,
     longitude,
   } = createOngBodySchema.parse(request.body)
@@ -47,7 +46,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       country,
       state,
       city,
-      zipCode,
+      zip_code,
       latitude,
       longitude,
     })

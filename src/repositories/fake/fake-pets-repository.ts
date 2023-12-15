@@ -14,8 +14,8 @@ export class FakePetsRepository implements PetsRepository {
         age: filters.age,
         type: filters.type,
         size: filters.size,
-        energy_level: filters.energyLevel,
-        independence_level: filters.independenceLevel,
+        energy_level: filters.energy_level,
+        independence_level: filters.independence_level,
       },
       isNil,
     )
