@@ -10,7 +10,7 @@ interface CreateOngServiceRequest {
   description?: string | null
   phone: string
   address: string
-  country: string
+  country?: string
   state: string
   city: string
   zip_code: number
