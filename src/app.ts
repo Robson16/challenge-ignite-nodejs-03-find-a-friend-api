@@ -1,5 +1,6 @@
 import { env } from '@/env'
 import { ongsRoutes } from '@/http/controllers/ongs/routes'
+import { petsRoutes } from '@/http/controllers/pets/routes'
 import { usersRoutes } from '@/http/controllers/users/routes'
 import fastifyCookie from '@fastify/cookie'
 import fastifyJwt from '@fastify/jwt'
@@ -23,6 +24,7 @@ app.register(fastifyCookie)
 
 app.register(usersRoutes)
 app.register(ongsRoutes)
+app.register(petsRoutes)
 
 app.setErrorHandler((error, request, reply) => {
   if (error instanceof ZodError) {
