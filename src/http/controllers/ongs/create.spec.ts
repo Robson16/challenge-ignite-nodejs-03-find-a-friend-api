@@ -1,14 +1,14 @@
 import { app } from '@/app'
 import { createAndAuthenticateUser } from '@/utils/test/create-and-authenticate-user'
 import request from 'supertest'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 describe('Create ONG Controller (e2e)', () => {
-  beforeEach(async () => {
+  beforeAll(async () => {
     await app.ready()
   })
 
-  afterEach(async () => {
+  afterAll(async () => {
     await app.close()
   })
 

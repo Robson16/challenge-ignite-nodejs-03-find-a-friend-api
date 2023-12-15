@@ -1,13 +1,13 @@
 import { app } from '@/app'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import request from 'supertest'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 describe('Register Controller (e2e)', () => {
-  beforeEach(async () => {
+  beforeAll(async () => {
     await app.ready()
   })
 
-  afterEach(async () => {
+  afterAll(async () => {
     await app.close()
   })
 
