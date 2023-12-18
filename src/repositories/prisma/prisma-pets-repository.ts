@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import { Prisma } from '@prisma/client'
-import { PetsRepository, SearchManyParams } from '../pets-repository'
+import { PetsRepository, FilterParams } from '../pets-repository'
 
 export class PrismaPetsRepository implements PetsRepository {
   async create(data: Prisma.PetUncheckedCreateInput) {
@@ -21,7 +21,7 @@ export class PrismaPetsRepository implements PetsRepository {
     return pet
   }
 
-  async searchMany({ filters, page }: SearchManyParams) {
+  async filter({ filters, page }: FilterParams) {
     const pets = await prisma.pet.findMany({
       where: {
         city: filters.city !== '' ? filters.city : undefined,

@@ -49,7 +49,7 @@ export class SearchPetService {
       throw new InvalidRequestError()
     }
 
-    const pets = await this.petsRepository.searchMany({
+    const pets = await this.petsRepository.filter({
       filters,
       page,
     })

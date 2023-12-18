@@ -1,12 +1,12 @@
 import { Pet, Prisma } from '@prisma/client'
 import { filter, isNil, matches, omitBy } from 'lodash'
 import { randomUUID } from 'node:crypto'
-import { PetsRepository, SearchManyParams } from '../pets-repository'
+import { PetsRepository, FilterParams } from '../pets-repository'
 
 export class FakePetsRepository implements PetsRepository {
   public items: Pet[] = []
 
-  async searchMany({ filters, page }: SearchManyParams) {
+  async filter({ filters, page }: FilterParams) {
     const notNilFilters = omitBy(
       {
         city: filters.city,
