@@ -29,12 +29,8 @@ export class PrimaOngsRepository implements OngsRepository {
         title: {
           contains: title,
         },
-        city: {
-          contains: city,
-        },
-        state: {
-          contains: state,
-        },
+        city: city !== '' ? city : undefined,
+        state: state !== '' ? state : undefined,
       },
       take: 20,
       skip: (page - 1) * 20,

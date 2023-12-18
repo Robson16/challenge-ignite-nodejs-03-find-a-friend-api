@@ -6,7 +6,7 @@ import { z } from 'zod'
 export async function create(request: FastifyRequest, reply: FastifyReply) {
   const createOngBodySchema = z.object({
     title: z.string(),
-    description: z.string().nullable(),
+    description: z.string().default(''),
     phone: z.string(),
     address: z.string(),
     country: z.string().default('Brazil'),

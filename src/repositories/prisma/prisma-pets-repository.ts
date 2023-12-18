@@ -24,16 +24,20 @@ export class PrismaPetsRepository implements PetsRepository {
   async searchMany({ filters, page }: SearchManyParams) {
     const pets = await prisma.pet.findMany({
       where: {
-        city: filters.city,
-        state: filters.state,
+        city: filters.city !== '' ? filters.city : undefined,
+        state: filters.state !== '' ? filters.state : undefined,
         type:
           filters.type === 'DOG' || filters.type === 'CAT'
             ? filters.type
             : undefined,
-        age: filters.age,
-        size: filters.size,
-        energy_level: filters.energy_level,
-        independence_level: filters.independence_level,
+        age: filters.age !== '' ? filters.age : undefined,
+        size: filters.size !== '' ? filters.size : undefined,
+        energy_level:
+          filters.energy_level !== '' ? filters.energy_level : undefined,
+        independence_level:
+          filters.independence_level !== ''
+            ? filters.independence_level
+            : undefined,
       },
       take: 20,
       skip: (page - 1) * 20,
