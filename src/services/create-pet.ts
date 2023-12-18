@@ -10,15 +10,15 @@ interface CreatePetServiceRequest {
   age: string
   type: 'DOG' | 'CAT'
   size: string
-  energyLevel: string
-  independenceLevel: string
+  energy_level: string
+  independence_level: string
   environment: string
   requirements: string[]
   address: string
   country?: string
   state: string
   city: string
-  zipCode: string
+  zip_code: number
   latitude: number
   longitude: number
 }
@@ -40,15 +40,15 @@ export class CreatePetService {
     age,
     type,
     size,
-    energyLevel,
-    independenceLevel,
+    energy_level,
+    independence_level,
     environment,
     requirements,
     address,
     country,
     state,
     city,
-    zipCode,
+    zip_code,
     latitude,
     longitude,
   }: CreatePetServiceRequest): Promise<CreatePetServiceResponse> {
@@ -65,15 +65,15 @@ export class CreatePetService {
       age,
       type,
       size,
-      energy_level: energyLevel,
-      independence_level: independenceLevel,
+      energy_level,
+      independence_level,
       environment,
       requirements: JSON.stringify(requirements),
       address,
       country,
       state,
       city,
-      zip_code: zipCode,
+      zip_code,
       latitude,
       longitude,
     })

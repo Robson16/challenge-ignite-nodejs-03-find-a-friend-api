@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import { Prisma } from '@prisma/client'
-import { PetsRepository, SearchManyParams } from '../pets-repository'
+import { PetsRepository, FilterParams } from '../pets-repository'
 
 export class PrismaPetsRepository implements PetsRepository {
   async create(data: Prisma.PetUncheckedCreateInput) {
@@ -21,19 +21,23 @@ export class PrismaPetsRepository implements PetsRepository {
     return pet
   }
 
-  async searchMany({ filters, page }: SearchManyParams) {
+  async filter({ filters, page }: FilterParams) {
     const pets = await prisma.pet.findMany({
       where: {
-        city: filters.city,
-        state: filters.state,
+        city: filters.city !== '' ? filters.city : undefined,
+        state: filters.state !== '' ? filters.state : undefined,
         type:
           filters.type === 'DOG' || filters.type === 'CAT'
             ? filters.type
             : undefined,
-        age: filters.age,
-        size: filters.size,
-        energy_level: filters.energyLevel,
-        independence_level: filters.independenceLevel,
+        age: filters.age !== '' ? filters.age : undefined,
+        size: filters.size !== '' ? filters.size : undefined,
+        energy_level:
+          filters.energy_level !== '' ? filters.energy_level : undefined,
+        independence_level:
+          filters.independence_level !== ''
+            ? filters.independence_level
+            : undefined,
       },
       take: 20,
       skip: (page - 1) * 20,

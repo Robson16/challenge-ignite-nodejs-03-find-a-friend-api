@@ -23,7 +23,7 @@ describe('Create Pet Service', () => {
       address: 'Test Street, 777',
       state: 'SP',
       city: 'Jundiaí',
-      zip_code: '7777777',
+      zip_code: 7777777,
       latitude: -23.4882062,
       longitude: -46.6192469,
     })
@@ -35,8 +35,8 @@ describe('Create Pet Service', () => {
       age: '3',
       type: 'DOG',
       size: 'small',
-      energyLevel: '3',
-      independenceLevel: '4',
+      energy_level: '3',
+      independence_level: '4',
       environment: 'Test environment text',
       requirements: [
         'Test requirement text 1',
@@ -46,7 +46,7 @@ describe('Create Pet Service', () => {
       address: 'Test Street, 777',
       state: 'SP',
       city: 'Jundiaí',
-      zipCode: '7777777',
+      zip_code: 7777777,
       latitude: -23.4882062,
       longitude: -46.6192469,
     })
@@ -63,8 +63,8 @@ describe('Create Pet Service', () => {
         age: '3',
         type: 'DOG',
         size: 'small',
-        energyLevel: '3',
-        independenceLevel: '4',
+        energy_level: '3',
+        independence_level: '4',
         environment: 'Test environment text',
         requirements: [
           'Test requirement text 1',
@@ -74,7 +74,7 @@ describe('Create Pet Service', () => {
         address: 'Test Street, 777',
         state: 'SP',
         city: 'Jundiaí',
-        zipCode: '7777777',
+        zip_code: 7777777,
         latitude: -23.4882062,
         longitude: -46.6192469,
       }),
